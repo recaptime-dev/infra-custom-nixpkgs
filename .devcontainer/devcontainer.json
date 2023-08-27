@@ -1,0 +1,21 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/debian
+{
+	"name": "Debian",
+	"image": "gitpod/workspace-full:latest",
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
+		"ghcr.io/devcontainers/features/github-cli:1": {},
+		"ghcr.io/joshuanianji/devcontainer-features/github-cli-persistence:0": {}
+		//"ghcr.io/devcontainers/features/nix:1": {}
+	},
+	"remoteUser": "gitpod",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"bbenoist.Nix",
+				"jnoortheen.nix-ide"
+			]
+		}
+	}
+}
