@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "bbenoist.nix",
+        "jnoortheen.nix-ide",
+        "github.vscode-github-actions",
+        "eamodio.gitlens",
+        "jasonnutter.vscode-codeowners"
+    ]
+}

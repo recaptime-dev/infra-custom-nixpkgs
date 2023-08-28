@@ -14,7 +14,10 @@
 		"vscode": {
 			"extensions": [
 				"bbenoist.Nix",
-				"jnoortheen.nix-ide"
+				"jnoortheen.nix-ide",
+				"github.vscode-github-actions",
+				"eamodio.gitlens",
+				"vivaxy.vscode-conventional-commits"
 			]
 		}
 	}

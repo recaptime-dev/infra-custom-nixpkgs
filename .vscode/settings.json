@@ -1,0 +1,6 @@
+{
+    "conventionalCommits.scopes": [
+        "gitpod-io/dazzle",
+        "github-actions"
+    ]
+}
