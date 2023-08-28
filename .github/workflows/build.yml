@@ -12,12 +12,13 @@ on:
 jobs:
   releaseops:
     strategy:
-        nurRepo: ["recaptime-dev"]
-        cachixName: ["recaptime-dev"]
-        nixPath:
-          - nixpkgs=channel:nixos-unstable
-          - nixpkgs=channel:nixpkgs-unstable
-          - nixpkgs=channel:nixos-23.05
+        matrix:
+          nurRepo: ["recaptime-dev"]
+          cachixName: ["recaptime-dev"]
+          nixPath:
+            - nixpkgs=channel:nixos-unstable
+            - nixpkgs=channel:nixpkgs-unstable
+            - nixpkgs=channel:nixos-23.05
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
@@ -58,4 +59,13 @@ jobs:
     - name: Trigger NUR update
       # Don't replace <YOUR_REPO_NAME> here!
       if: ${{ matrix.nurRepo != '<YOUR_REPO_NAME>' }}
-      run: curl -XPOST "https://nur-update.nix-community.org/update?repo=${{ matrix.nurRepo }}"
+      run: |
+        curl -XPOST "https://nur-update.nix-community.org/update?repo=${{ matrix.nurRepo }}"
+        gh api \
+          -H "Accept: application/vnd.github+json" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
+          /repos/nix-community/NUR/actions/runs \
+          | jq '."workflow_runs"[0]'
+      env:
+        GITHUB_TOKEN: ${{secrets.GH_SERVICE_ACCOUNT_API_KEY}}
+      if: always()
