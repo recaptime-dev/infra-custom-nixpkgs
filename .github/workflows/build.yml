@@ -21,6 +21,16 @@ jobs:
             - nixpkgs=channel:nixos-23.05
     runs-on: ubuntu-latest
     steps:
+    - name: Bulldoze disk space on hosted runners
+      uses: insightsengineering/disk-space-reclaimer@v1
+      with:
+        tools-cache: true
+        android: true
+        dotnet: true
+        haskell: true
+        large-packages: true
+        swap-storage: true
+        docker-images: true
     - name: Checkout repository
       uses: actions/checkout@v3
     - name: Install nix
@@ -68,4 +78,3 @@ jobs:
           | jq '."workflow_runs"[0]'
       env:
         GITHUB_TOKEN: ${{secrets.GH_SERVICE_ACCOUNT_API_KEY}}
-      if: always()
